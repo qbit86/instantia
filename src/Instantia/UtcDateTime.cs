@@ -2,7 +2,7 @@ using System;
 
 namespace Instantia
 {
-    public readonly struct UtcDateTime
+    public readonly partial struct UtcDateTime
     {
         private static readonly DateTime s_defaultDateTime = new DateTime(0L, DateTimeKind.Utc);
 
