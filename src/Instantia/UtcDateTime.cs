@@ -4,7 +4,7 @@ namespace Instantia
 {
     public readonly struct UtcDateTime
     {
-        private static readonly DateTime s_defaultDateTime = new DateTime(0, DateTimeKind.Utc);
+        private static readonly DateTime s_defaultDateTime = new DateTime(0L, DateTimeKind.Utc);
 
         private readonly DateTime _dateTime;
 
@@ -16,8 +16,21 @@ namespace Instantia
             _dateTime = dateTime;
         }
 
+        private UtcDateTime(DateTime dateTime, bool _)
+        {
+            _dateTime = dateTime;
+        }
+
         public bool IsDefault => _dateTime.Kind == default;
 
         public DateTime Value => IsDefault ? s_defaultDateTime : _dateTime;
+
+        public static UtcDateTime FromDateTime(DateTime dateTime)
+        {
+            if (dateTime.Kind != DateTimeKind.Utc)
+                return new UtcDateTime(dateTime.ToUniversalTime(), false);
+
+            return new UtcDateTime(dateTime, false);
+        }
     }
 }
