@@ -4,6 +4,8 @@ namespace Instantia
 {
     public readonly partial struct UtcDateTime
     {
+        private const string Argument_InvalidDateTimeKind = "Invalid DateTimeKind value.";
+
         private static readonly DateTime s_defaultDateTime = new DateTime(0L, DateTimeKind.Utc);
 
         private readonly DateTime _dateTime;
@@ -11,7 +13,7 @@ namespace Instantia
         public UtcDateTime(DateTime dateTime)
         {
             if (dateTime.Kind != DateTimeKind.Utc)
-                throw new ArgumentException("Invalid DateTimeKind value.", nameof(dateTime));
+                throw new ArgumentException(Argument_InvalidDateTimeKind, nameof(dateTime));
 
             _dateTime = dateTime;
         }
