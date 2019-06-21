@@ -8,6 +8,10 @@ namespace Instantia
 
         private static readonly DateTime s_defaultDateTime = new DateTime(0L, DateTimeKind.Utc);
 
+        public static readonly DateTime MinValue = new DateTime(DateTime.MinValue.Ticks, DateTimeKind.Utc);
+
+        public static readonly DateTime MaxValue = new DateTime(DateTime.MaxValue.Ticks, DateTimeKind.Utc);
+
         private readonly DateTime _dateTime;
 
         public UtcDateTime(DateTime dateTime)
