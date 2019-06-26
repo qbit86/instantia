@@ -3,7 +3,7 @@ using System;
 namespace Instantia
 {
     // TODO: Implement interfaces.
-    public readonly partial struct UtcDateTime : IComparable, IComparable<UtcDateTime>
+    public readonly partial struct UtcDateTime : IComparable, IComparable<UtcDateTime>, IEquatable<UtcDateTime>
     {
         private const string Arg_MustBeDateTime = "Object must be of type DateTime.";
         private const string Argument_InvalidDateTimeKind = "Invalid DateTimeKind value.";
@@ -63,7 +63,12 @@ namespace Instantia
 
         public static int Compare(UtcDateTime t1, UtcDateTime t2)
         {
-            return DateTime.Compare(t1.ToDateTime(), t2.ToDateTime());
+            return t1.Ticks.CompareTo(t2.Ticks);
+        }
+
+        public static bool Equals(UtcDateTime t1, UtcDateTime t2)
+        {
+            return t1.Ticks == t2.Ticks;
         }
 
         public static int DaysInMonth(int year, int month)
@@ -129,20 +134,35 @@ namespace Instantia
             return new UtcDateTime(dateTime, false);
         }
 
-        public int CompareTo(UtcDateTime value)
+        public int CompareTo(UtcDateTime other)
         {
-            return Compare(this, value);
+            return Compare(this, other);
         }
 
-        public int CompareTo(object value)
+        public int CompareTo(object obj)
         {
-            if (value == null)
-                return 1;
-
-            if (value is UtcDateTime other)
+            if (obj is UtcDateTime other)
                 return Compare(this, other);
 
-            throw new ArgumentException(Arg_MustBeDateTime, nameof(value));
+            if (obj is null)
+                return 1;
+
+            throw new ArgumentException(Arg_MustBeDateTime, nameof(obj));
+        }
+
+        public bool Equals(UtcDateTime other)
+        {
+            return Ticks == other.Ticks;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is UtcDateTime other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return Ticks.GetHashCode();
         }
 
         public DateTime ToDateTime()
