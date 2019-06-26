@@ -5,6 +5,7 @@ namespace Instantia
     // TODO: Implement interfaces.
     public readonly partial struct UtcDateTime : IComparable, IComparable<UtcDateTime>
     {
+        private const string Arg_MustBeDateTime = "Object must be of type DateTime.";
         private const string Argument_InvalidDateTimeKind = "Invalid DateTimeKind value.";
 
         private static readonly DateTime s_defaultDateTime = new DateTime(0L, DateTimeKind.Utc);
@@ -63,6 +64,11 @@ namespace Instantia
         public static int Compare(UtcDateTime t1, UtcDateTime t2)
         {
             return DateTime.Compare(t1.ToDateTime(), t2.ToDateTime());
+        }
+
+        public static int DaysInMonth(int year, int month)
+        {
+            return DateTime.DaysInMonth(year, month);
         }
 
         public static UtcDateTime FromDateTime(DateTime dateTime)
@@ -136,7 +142,7 @@ namespace Instantia
             if (value is UtcDateTime other)
                 return Compare(this, other);
 
-            throw new ArgumentException("Object must be of type DateTime.", nameof(value));
+            throw new ArgumentException(Arg_MustBeDateTime, nameof(value));
         }
 
         public DateTime ToDateTime()
