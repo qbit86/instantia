@@ -59,14 +59,67 @@ namespace Instantia
 
         public int Year => _dateTime.Year;
 
-        public DateTime Value => IsDefault ? s_defaultDateTime : _dateTime;
-
         public static UtcDateTime FromDateTime(DateTime dateTime)
         {
             if (dateTime.Kind != DateTimeKind.Utc)
                 return new UtcDateTime(dateTime.ToUniversalTime(), false);
 
             return new UtcDateTime(dateTime, false);
+        }
+
+        public UtcDateTime Add(TimeSpan value)
+        {
+            return new UtcDateTime(_dateTime.Ticks + value.Ticks);
+        }
+
+        public UtcDateTime AddDays(double value)
+        {
+            DateTime dateTime = ToDateTime().AddDays(value);
+            return new UtcDateTime(dateTime, false);
+        }
+
+        public UtcDateTime AddHours(double value)
+        {
+            DateTime dateTime = ToDateTime().AddHours(value);
+            return new UtcDateTime(dateTime, false);
+        }
+        public UtcDateTime AddMilliseconds(double value)
+        {
+            DateTime dateTime = ToDateTime().AddMilliseconds(value);
+            return new UtcDateTime(dateTime, false);
+        }
+        public UtcDateTime AddMinutes(double value)
+        {
+            DateTime dateTime = ToDateTime().AddMinutes(value);
+            return new UtcDateTime(dateTime, false);
+        }
+
+        public UtcDateTime AddMonths(int months)
+        {
+            DateTime dateTime = ToDateTime().AddMonths(months);
+            return new UtcDateTime(dateTime, false);
+        }
+
+        public UtcDateTime AddSeconds(double value)
+        {
+            DateTime dateTime = ToDateTime().AddSeconds(value);
+            return new UtcDateTime(dateTime, false);
+        }
+
+        public UtcDateTime AddTicks(long value)
+        {
+            return new UtcDateTime(_dateTime.Ticks + value);
+        }
+
+        public UtcDateTime AddYears(int value)
+        {
+            DateTime dateTime = ToDateTime().AddYears(value);
+            return new UtcDateTime(dateTime, false);
+        }
+
+        public DateTime ToDateTime()
+        {
+            return IsDefault ? s_defaultDateTime : _dateTime;
         }
     }
 }
