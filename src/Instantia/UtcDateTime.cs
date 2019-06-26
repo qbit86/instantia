@@ -2,7 +2,8 @@ using System;
 
 namespace Instantia
 {
-    public readonly partial struct UtcDateTime
+    // TODO: Implement interfaces.
+    public readonly partial struct UtcDateTime : IComparable, IComparable<UtcDateTime>
     {
         private const string Argument_InvalidDateTimeKind = "Invalid DateTimeKind value.";
 
@@ -58,6 +59,11 @@ namespace Instantia
         public static UtcDateTime UtcNow => new UtcDateTime(DateTime.UtcNow, false);
 
         public int Year => _dateTime.Year;
+
+        public static int Compare(UtcDateTime t1, UtcDateTime t2)
+        {
+            return DateTime.Compare(t1.ToDateTime(), t2.ToDateTime());
+        }
 
         public static UtcDateTime FromDateTime(DateTime dateTime)
         {
@@ -115,6 +121,22 @@ namespace Instantia
         {
             DateTime dateTime = ToDateTime().AddYears(value);
             return new UtcDateTime(dateTime, false);
+        }
+
+        public int CompareTo(UtcDateTime value)
+        {
+            return Compare(this, value);
+        }
+
+        public int CompareTo(object value)
+        {
+            if (value == null)
+                return 1;
+
+            if (value is UtcDateTime other)
+                return Compare(this, other);
+
+            throw new ArgumentException("Object must be of type DateTime.", nameof(value));
         }
 
         public DateTime ToDateTime()
