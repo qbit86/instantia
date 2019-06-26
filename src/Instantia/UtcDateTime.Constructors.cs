@@ -1,5 +1,7 @@
 using System;
 
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
+
 namespace Instantia
 {
     public readonly partial struct UtcDateTime

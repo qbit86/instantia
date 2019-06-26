@@ -1,5 +1,7 @@
 using System;
 
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
+
 namespace Instantia
 {
     // TODO: Implement interfaces.
@@ -78,10 +80,9 @@ namespace Instantia
 
         public static UtcDateTime FromDateTime(DateTime dateTime)
         {
-            if (dateTime.Kind != DateTimeKind.Utc)
-                return new UtcDateTime(dateTime.ToUniversalTime(), false);
-
-            return new UtcDateTime(dateTime, false);
+            return dateTime.Kind == DateTimeKind.Utc
+                ? new UtcDateTime(dateTime, false)
+                : new UtcDateTime(dateTime.ToUniversalTime(), false);
         }
 
         public UtcDateTime Add(TimeSpan value)
