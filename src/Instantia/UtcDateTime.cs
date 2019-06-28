@@ -5,8 +5,8 @@ using System.Globalization;
 
 namespace Instantia
 {
-    // TODO: Implement interfaces.
-    public readonly partial struct UtcDateTime : IComparable, IComparable<UtcDateTime>, IEquatable<UtcDateTime>
+    public readonly partial struct UtcDateTime : IComparable, IFormattable, IComparable<UtcDateTime>,
+        IEquatable<UtcDateTime>
     {
         private const string Arg_MustBeDateTime = "Object must be of type DateTime.";
         private const string Argument_InvalidDateTimeKind = "Invalid DateTimeKind value.";
