@@ -172,7 +172,39 @@ namespace Instantia
             result = FromDateTime(dateTime);
             return success;
         }
+
+        public static bool TryParseExact(ReadOnlySpan<char> s, ReadOnlySpan<char> format, IFormatProvider provider,
+            DateTimeStyles style, out UtcDateTime result)
+        {
+            bool success = DateTime.TryParseExact(s, format, provider, style, out DateTime dateTime);
+            result = FromDateTime(dateTime);
+            return success;
+        }
+
+        public static bool TryParseExact(ReadOnlySpan<char> s, string[] formats, IFormatProvider provider,
+            DateTimeStyles style, out UtcDateTime result)
+        {
+            bool success = DateTime.TryParseExact(s, formats, provider, style, out DateTime dateTime);
+            result = FromDateTime(dateTime);
+            return success;
+        }
 #endif
+
+        public static bool TryParseExact(string s, string format, IFormatProvider provider, DateTimeStyles style,
+            out UtcDateTime result)
+        {
+            bool success = DateTime.TryParseExact(s, format, provider, style, out DateTime dateTime);
+            result = FromDateTime(dateTime);
+            return success;
+        }
+
+        public static bool TryParseExact(string s, string[] formats, IFormatProvider provider, DateTimeStyles style,
+            out UtcDateTime result)
+        {
+            bool success = DateTime.TryParseExact(s, formats, provider, style, out DateTime dateTime);
+            result = FromDateTime(dateTime);
+            return success;
+        }
 
         public UtcDateTime Add(TimeSpan value)
         {
