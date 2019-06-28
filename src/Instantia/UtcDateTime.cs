@@ -66,7 +66,7 @@ namespace Instantia
 
         public UtcDateTime Add(TimeSpan value)
         {
-            return new UtcDateTime(_dateTime.Ticks + value.Ticks);
+            return new UtcDateTime(ToDateTime().Add(value), false);
         }
 
         public UtcDateTime AddDays(double value)
