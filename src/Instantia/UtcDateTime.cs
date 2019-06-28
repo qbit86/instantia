@@ -248,9 +248,45 @@ namespace Instantia
             return Ticks.GetHashCode();
         }
 
+        public TimeSpan Subtract(UtcDateTime value)
+        {
+            return new TimeSpan(Ticks - value.Ticks);
+        }
+
+        public UtcDateTime Subtract(TimeSpan value)
+        {
+            DateTime dateTime = ToDateTime().Subtract(value);
+            return new UtcDateTime(dateTime, false);
+        }
+
+        public long ToBinary()
+        {
+            return ToDateTime().ToBinary();
+        }
+
         public DateTime ToDateTime()
         {
             return IsDefault ? s_defaultDateTime : _dateTime;
+        }
+
+        public long ToFileTimeUtc()
+        {
+            return ToDateTime().ToFileTimeUtc();
+        }
+
+        public override string ToString()
+        {
+            return ToDateTime().ToString("u", CultureInfo.InvariantCulture);
+        }
+
+        public string ToString(IFormatProvider provider)
+        {
+            return ToDateTime().ToString(provider);
+        }
+
+        public string ToString(string format, IFormatProvider provider)
+        {
+            return ToDateTime().ToString(format, provider);
         }
     }
 }
