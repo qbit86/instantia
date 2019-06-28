@@ -78,11 +78,23 @@ namespace Instantia
             return DateTime.DaysInMonth(year, month);
         }
 
+        public static UtcDateTime FromBinary(long dateData)
+        {
+            DateTime dateTime = DateTime.FromBinary(dateData);
+            return FromDateTime(dateTime);
+        }
+
         public static UtcDateTime FromDateTime(DateTime dateTime)
         {
             return dateTime.Kind == DateTimeKind.Utc
                 ? new UtcDateTime(dateTime, false)
                 : new UtcDateTime(dateTime.ToUniversalTime(), false);
+        }
+
+        public static UtcDateTime FromFileTimeUtc(long fileTime)
+        {
+            DateTime dateTime = DateTime.FromFileTimeUtc(fileTime);
+            return new UtcDateTime(dateTime, false);
         }
 
         public UtcDateTime Add(TimeSpan value)
@@ -159,6 +171,16 @@ namespace Instantia
         public override bool Equals(object obj)
         {
             return obj is UtcDateTime other && Equals(other);
+        }
+
+        public string[] GetDateTimeFormats(IFormatProvider provider)
+        {
+            return ToDateTime().GetDateTimeFormats(provider);
+        }
+
+        public string[] GetDateTimeFormats(char format, IFormatProvider provider)
+        {
+            return ToDateTime().GetDateTimeFormats(format, provider);
         }
 
         public override int GetHashCode()
