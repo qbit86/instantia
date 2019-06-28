@@ -157,6 +157,23 @@ namespace Instantia
         }
 #endif
 
+        public static bool TryParse(string s, IFormatProvider provider, DateTimeStyles styles, out UtcDateTime result)
+        {
+            bool success = DateTime.TryParse(s, provider, styles, out DateTime dateTime);
+            result = FromDateTime(dateTime);
+            return success;
+        }
+
+#if NETCOREAPP2_1 || NETSTANDARD2_1
+        public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider provider, DateTimeStyles styles,
+            out UtcDateTime result)
+        {
+            bool success = DateTime.TryParse(s, provider, styles, out DateTime dateTime);
+            result = FromDateTime(dateTime);
+            return success;
+        }
+#endif
+
         public UtcDateTime Add(TimeSpan value)
         {
             return new UtcDateTime(_dateTime.Ticks + value.Ticks);
@@ -288,5 +305,13 @@ namespace Instantia
         {
             return ToDateTime().ToString(format, provider);
         }
+
+#if NETCOREAPP2_1 || NETSTANDARD2_1
+        public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format = default,
+            IFormatProvider provider = null)
+        {
+            return ToDateTime().TryFormat(destination, out charsWritten, format, provider);
+        }
+#endif
     }
 }
