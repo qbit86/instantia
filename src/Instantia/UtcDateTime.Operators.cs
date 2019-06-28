@@ -23,5 +23,7 @@ namespace Instantia
 
         public static UtcDateTime operator -(UtcDateTime d, TimeSpan t) =>
             new UtcDateTime(d.ToDateTime().Subtract(t), false);
+
+        public static explicit operator DateTime(UtcDateTime d) => d.ToDateTime();
     }
 }
