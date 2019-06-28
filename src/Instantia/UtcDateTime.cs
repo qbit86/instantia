@@ -27,10 +27,12 @@ namespace Instantia
             _dateTime = dateTime;
         }
 
+#pragma warning disable CA1801 // Review unused parameters
         private UtcDateTime(DateTime dateTime, bool _)
         {
             _dateTime = dateTime;
         }
+#pragma warning restore CA1801 // Review unused parameters
 
         public UtcDateTime Date => IsDefault ? new UtcDateTime(0L) : new UtcDateTime(_dateTime.Date, false);
 
@@ -44,7 +46,9 @@ namespace Instantia
 
         public bool IsDefault => _dateTime.Kind == default;
 
+#pragma warning disable CA1822 // Mark members as static
         public DateTimeKind Kind => DateTimeKind.Utc;
+#pragma warning restore CA1822 // Mark members as static
 
         public int Millisecond => _dateTime.Millisecond;
 
