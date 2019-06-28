@@ -101,13 +101,13 @@ namespace Instantia
         public static UtcDateTime Parse(string s, IFormatProvider provider)
         {
             DateTime dateTime = DateTime.Parse(s, provider);
-            return new UtcDateTime(dateTime, false);
+            return FromDateTime(dateTime);
         }
 
         public static UtcDateTime Parse(string s, IFormatProvider provider, DateTimeStyles styles)
         {
             DateTime dateTime = DateTime.Parse(s, provider, styles);
-            return new UtcDateTime(dateTime, false);
+            return FromDateTime(dateTime);
         }
 
 #if NETCOREAPP2_1 || NETSTANDARD2_1
@@ -115,7 +115,41 @@ namespace Instantia
             DateTimeStyles styles = DateTimeStyles.None)
         {
             DateTime dateTime = DateTime.Parse(s, provider, styles);
-            return new UtcDateTime(dateTime, false);
+            return FromDateTime(dateTime);
+        }
+#endif
+
+        public static UtcDateTime ParseExact(string s, string format, IFormatProvider provider)
+        {
+            DateTime dateTime = DateTime.ParseExact(s, format, provider);
+            return FromDateTime(dateTime);
+        }
+
+        public static UtcDateTime ParseExact(string s, string format, IFormatProvider provider, DateTimeStyles style)
+        {
+            DateTime dateTime = DateTime.ParseExact(s, format, provider, style);
+            return FromDateTime(dateTime);
+        }
+
+        public static UtcDateTime ParseExact(string s, string[] formats, IFormatProvider provider, DateTimeStyles style)
+        {
+            DateTime dateTime = DateTime.ParseExact(s, formats, provider, style);
+            return FromDateTime(dateTime);
+        }
+
+#if NETCOREAPP2_1 || NETSTANDARD2_1
+        public static UtcDateTime ParseExact(ReadOnlySpan<char> s, ReadOnlySpan<char> format,
+            IFormatProvider provider, DateTimeStyles style = DateTimeStyles.None)
+        {
+            DateTime dateTime = DateTime.ParseExact(s, format, provider, style);
+            return FromDateTime(dateTime);
+        }
+
+        public static UtcDateTime ParseExact(ReadOnlySpan<char> s, string[] formats, IFormatProvider provider,
+            DateTimeStyles style = DateTimeStyles.None)
+        {
+            DateTime dateTime = DateTime.ParseExact(s, formats, provider, style);
+            return FromDateTime(dateTime);
         }
 #endif
 
