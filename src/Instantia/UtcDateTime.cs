@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 
 #pragma warning disable CA1303 // Do not pass literals as localized parameters
 
@@ -96,6 +97,27 @@ namespace Instantia
             DateTime dateTime = DateTime.FromFileTimeUtc(fileTime);
             return new UtcDateTime(dateTime, false);
         }
+
+        public static UtcDateTime Parse(string s, IFormatProvider provider)
+        {
+            DateTime dateTime = DateTime.Parse(s, provider);
+            return new UtcDateTime(dateTime, false);
+        }
+
+        public static UtcDateTime Parse(string s, IFormatProvider provider, DateTimeStyles styles)
+        {
+            DateTime dateTime = DateTime.Parse(s, provider, styles);
+            return new UtcDateTime(dateTime, false);
+        }
+
+#if NETCOREAPP2_1 || NETSTANDARD2_1
+        public static UtcDateTime Parse(ReadOnlySpan<char> s, IFormatProvider provider = null,
+            DateTimeStyles styles = DateTimeStyles.None)
+        {
+            DateTime dateTime = DateTime.Parse(s, provider, styles);
+            return new UtcDateTime(dateTime, false);
+        }
+#endif
 
         public UtcDateTime Add(TimeSpan value)
         {
