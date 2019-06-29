@@ -10,7 +10,6 @@ namespace Instantia
     {
         private const string ArgMustBeDateTime = "Object must be of type DateTime.";
         private const string ArgumentInvalidDateTimeKind = "Invalid DateTimeKind value.";
-
         private static readonly DateTime s_defaultDateTime = new DateTime(0L, DateTimeKind.Utc);
 
         public static readonly UtcDateTime MinValue = new UtcDateTime(DateTime.MinValue.Ticks);
@@ -81,11 +80,13 @@ namespace Instantia
             DateTime dateTime = ToDateTime().AddHours(value);
             return new UtcDateTime(dateTime, false);
         }
+
         public UtcDateTime AddMilliseconds(double value)
         {
             DateTime dateTime = ToDateTime().AddMilliseconds(value);
             return new UtcDateTime(dateTime, false);
         }
+
         public UtcDateTime AddMinutes(double value)
         {
             DateTime dateTime = ToDateTime().AddMinutes(value);
