@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 #pragma warning disable CA1303 // Do not pass literals as localized parameters
 
@@ -6,15 +7,15 @@ namespace Instantia
 {
     public readonly partial struct UtcDateTime
     {
-        public UtcDateTime(long ticks) : this(new DateTime(ticks, DateTimeKind.Utc), false) { }
-
-        public UtcDateTime(long ticks, DateTimeKind kind)
+        public UtcDateTime(DateTime dateTime)
         {
-            if (kind != DateTimeKind.Utc)
-                throw new ArgumentException(ArgumentInvalidDateTimeKind, nameof(kind));
+            if (dateTime.Kind != DateTimeKind.Utc)
+                throw new ArgumentException(ArgumentInvalidDateTimeKind, nameof(dateTime));
 
-            _dateTime = new DateTime(ticks, DateTimeKind.Utc);
+            _dateTime = dateTime;
         }
+
+        public UtcDateTime(long ticks) : this(new DateTime(ticks, DateTimeKind.Utc), false) { }
 
         public UtcDateTime(int year, int month, int day) :
             this(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc), false) { }
@@ -22,24 +23,17 @@ namespace Instantia
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second) :
             this(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc), false) { }
 
-        public UtcDateTime(int year, int month, int day, int hour, int minute, int second, DateTimeKind kind)
-        {
-            if (kind != DateTimeKind.Utc)
-                throw new ArgumentException(ArgumentInvalidDateTimeKind, nameof(kind));
-
-            _dateTime = new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc);
-        }
-
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond) :
-            this(new DateTime(year, month, day, hour, minute, second, millisecond, DateTimeKind.Utc)) { }
+            this(new DateTime(year, month, day, hour, minute, second, millisecond, DateTimeKind.Utc), false) { }
 
-        public UtcDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond,
-            DateTimeKind kind)
+#pragma warning disable CA1801 // Review unused parameters
+        // ReSharper disable once UnusedParameter.Local
+        private UtcDateTime(DateTime dateTime, bool _)
         {
-            if (kind != DateTimeKind.Utc)
-                throw new ArgumentException(ArgumentInvalidDateTimeKind, nameof(kind));
+            Debug.Assert(dateTime.Kind == DateTimeKind.Utc, "dateTime.Kind == DateTimeKind.Utc");
 
-            _dateTime = new DateTime(year, month, day, hour, minute, second, millisecond, DateTimeKind.Utc);
+            _dateTime = dateTime;
         }
+#pragma warning restore CA1801 // Review unused parameters
     }
 }
