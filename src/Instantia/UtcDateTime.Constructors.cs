@@ -11,7 +11,7 @@ namespace Instantia
         public UtcDateTime(long ticks, DateTimeKind kind)
         {
             if (kind != DateTimeKind.Utc)
-                throw new ArgumentException(Argument_InvalidDateTimeKind, nameof(kind));
+                throw new ArgumentException(ArgumentInvalidDateTimeKind, nameof(kind));
 
             _dateTime = new DateTime(ticks, DateTimeKind.Utc);
         }
@@ -27,7 +27,7 @@ namespace Instantia
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second, DateTimeKind kind)
         {
             if (kind != DateTimeKind.Utc)
-                throw new ArgumentException(Argument_InvalidDateTimeKind, nameof(kind));
+                throw new ArgumentException(ArgumentInvalidDateTimeKind, nameof(kind));
 
             _dateTime = new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc);
         }
@@ -40,7 +40,7 @@ namespace Instantia
             DateTimeKind kind)
         {
             if (kind != DateTimeKind.Utc)
-                throw new ArgumentException(Argument_InvalidDateTimeKind, nameof(kind));
+                throw new ArgumentException(ArgumentInvalidDateTimeKind, nameof(kind));
 
             _dateTime = new DateTime(year, month, day, hour, minute, second, millisecond, DateTimeKind.Utc);
         }

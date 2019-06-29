@@ -8,8 +8,8 @@ namespace Instantia
     public readonly partial struct UtcDateTime : IComparable, IFormattable, IComparable<UtcDateTime>,
         IEquatable<UtcDateTime>
     {
-        private const string Arg_MustBeDateTime = "Object must be of type DateTime.";
-        private const string Argument_InvalidDateTimeKind = "Invalid DateTimeKind value.";
+        private const string ArgMustBeDateTime = "Object must be of type DateTime.";
+        private const string ArgumentInvalidDateTimeKind = "Invalid DateTimeKind value.";
 
         private static readonly DateTime s_defaultDateTime = new DateTime(0L, DateTimeKind.Utc);
 
@@ -22,7 +22,7 @@ namespace Instantia
         public UtcDateTime(DateTime dateTime)
         {
             if (dateTime.Kind != DateTimeKind.Utc)
-                throw new ArgumentException(Argument_InvalidDateTimeKind, nameof(dateTime));
+                throw new ArgumentException(ArgumentInvalidDateTimeKind, nameof(dateTime));
 
             _dateTime = dateTime;
         }
@@ -128,7 +128,7 @@ namespace Instantia
             if (obj is null)
                 return 1;
 
-            throw new ArgumentException(Arg_MustBeDateTime, nameof(obj));
+            throw new ArgumentException(ArgMustBeDateTime, nameof(obj));
         }
 
         public bool Equals(UtcDateTime other)
@@ -192,9 +192,9 @@ namespace Instantia
             return ToDateTime().ToString(provider);
         }
 
-        public string ToString(string format, IFormatProvider provider)
+        public string ToString(string format, IFormatProvider formatProvider)
         {
-            return ToDateTime().ToString(format, provider);
+            return ToDateTime().ToString(format, formatProvider);
         }
 
 #if NETCOREAPP2_1 || NETSTANDARD2_1
