@@ -17,12 +17,10 @@ namespace Instantia
         }
 
         public UtcDateTime(int year, int month, int day) :
-            this(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc))
-        { }
+            this(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc)) { }
 
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second) :
-            this(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc))
-        { }
+            this(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc)) { }
 
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second, DateTimeKind kind)
         {
@@ -33,8 +31,7 @@ namespace Instantia
         }
 
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond) :
-            this(new DateTime(year, month, day, hour, minute, second, millisecond, DateTimeKind.Utc))
-        { }
+            this(new DateTime(year, month, day, hour, minute, second, millisecond, DateTimeKind.Utc)) { }
 
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond,
             DateTimeKind kind)
