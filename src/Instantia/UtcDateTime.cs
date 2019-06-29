@@ -27,6 +27,7 @@ namespace Instantia
         }
 
 #pragma warning disable CA1801 // Review unused parameters
+        // ReSharper disable once UnusedParameter.Local
         private UtcDateTime(DateTime dateTime, bool _)
         {
             _dateTime = dateTime;
