@@ -17,10 +17,10 @@ namespace Instantia
         }
 
         public UtcDateTime(int year, int month, int day) :
-            this(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc)) { }
+            this(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc), false) { }
 
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second) :
-            this(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc)) { }
+            this(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc), false) { }
 
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second, DateTimeKind kind)
         {

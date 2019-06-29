@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Globalization;
 
 #pragma warning disable CA1303 // Do not pass literals as localized parameters
@@ -30,6 +31,8 @@ namespace Instantia
         // ReSharper disable once UnusedParameter.Local
         private UtcDateTime(DateTime dateTime, bool _)
         {
+            Debug.Assert(dateTime.Kind == DateTimeKind.Utc, "dateTime.Kind == DateTimeKind.Utc");
+
             _dateTime = dateTime;
         }
 #pragma warning restore CA1801 // Review unused parameters
