@@ -8,7 +8,7 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/qbit86/instantia</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageIconUrl>https://github.com/qbit86/instantia/raw/develop/assets/kopimi.png</PackageIconUrl>
+    <PackageIconUrl>https://github.com/qbit86/instantia/raw/master/assets/kopimi.png</PackageIconUrl>
     <AssemblyOriginatorKeyFile>$(RepoRoot)assets/instantia.snk</AssemblyOriginatorKeyFile>
     <RootNamespace>Instantia</RootNamespace>
   </PropertyGroup>
