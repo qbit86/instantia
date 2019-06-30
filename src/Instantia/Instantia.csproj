@@ -5,7 +5,9 @@
     <AssemblyVersion>0.1</AssemblyVersion>
     <VersionPrefix>0.1.0</VersionPrefix>
     <FileVersion>$(VersionPrefix)</FileVersion>
-    <Description></Description>
+    <Description>A thin wrapper around System.DateTime which guarantees Kind to be Utc.
+Commonly used types:
+Instantia.UtcDateTime</Description>
     <PackageTags>instantia;time;date;utc;instant</PackageTags>
     <PackageReleaseNotes>https://github.com/qbit86/instantia/blob/develop/src/Instantia/CHANGELOG.md</PackageReleaseNotes>
     <SignAssembly>true</SignAssembly>
