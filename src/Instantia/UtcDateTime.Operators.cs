@@ -49,7 +49,7 @@ namespace Instantia
             return new UtcDateTime(d.ToDateTime().Subtract(t), false);
         }
 
-        public static explicit operator DateTime(UtcDateTime d)
+        public static implicit operator DateTime(UtcDateTime d)
         {
             return d.ToDateTime();
         }
