@@ -5,6 +5,7 @@ namespace Instantia
 {
     public readonly partial struct UtcDateTime
     {
+        [Obsolete("Please use GetCurrent() instead.")]
         public static UtcDateTime UtcNow => new UtcDateTime(DateTime.UtcNow, false);
 
         public static int Compare(UtcDateTime t1, UtcDateTime t2)
@@ -45,6 +46,13 @@ namespace Instantia
             DateTime dateTime = DateTime.FromFileTimeUtc(fileTime);
             return new UtcDateTime(dateTime, false);
         }
+
+#pragma warning disable CA1024 // Use properties where appropriate
+        public static UtcDateTime GetCurrent()
+        {
+            return new UtcDateTime(DateTime.UtcNow, false);
+        }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         public static UtcDateTime Parse(string s, IFormatProvider provider)
         {
