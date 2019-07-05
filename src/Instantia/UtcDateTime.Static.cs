@@ -5,8 +5,6 @@ namespace Instantia
 {
     public readonly partial struct UtcDateTime
     {
-        public static UtcDateTime Today => UtcNow.Date;
-
         public static UtcDateTime UtcNow => new UtcDateTime(DateTime.UtcNow, false);
 
         public static int Compare(UtcDateTime t1, UtcDateTime t2)
