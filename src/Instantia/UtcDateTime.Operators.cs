@@ -53,5 +53,10 @@ namespace Instantia
         {
             return d.ToDateTime();
         }
+
+        public static implicit operator DateTimeOffset(UtcDateTime d)
+        {
+            return d.ToDateTimeOffset();
+        }
     }
 }

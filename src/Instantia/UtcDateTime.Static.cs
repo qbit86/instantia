@@ -37,6 +37,11 @@ namespace Instantia
                 : new UtcDateTime(dateTime.ToUniversalTime(), false);
         }
 
+        public static UtcDateTime FromDateTimeOffset(DateTimeOffset dateTimeOffset)
+        {
+            return new UtcDateTime(dateTimeOffset.UtcDateTime, false);
+        }
+
         public static UtcDateTime FromFileTimeUtc(long fileTime)
         {
             DateTime dateTime = DateTime.FromFileTimeUtc(fileTime);
