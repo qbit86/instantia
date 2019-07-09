@@ -17,7 +17,7 @@ namespace Instantia
         public static readonly UtcDateTime MaxValue = new UtcDateTime(DateTime.MaxValue.Ticks);
 
 #if NETCOREAPP2_1 || NETSTANDARD2_1
-        public static readonly DateTime UnixEpoch = DateTime.UnixEpoch;
+        public static readonly UtcDateTime UnixEpoch = new UtcDateTime(DateTime.UnixEpoch, false);
 #endif
 
         private readonly DateTime _dateTime;
