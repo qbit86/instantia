@@ -1,5 +1,7 @@
 # Instantia
 
+[![Instantia version](https://img.shields.io/nuget/v/Instantia.svg)](https://www.nuget.org/packages/Instantia/)
+
 `Instantia.UtcDateTime` is an alternative to `System.DateTime` that enforces `Kind` to be always `Utc`.
 
 ## Usage

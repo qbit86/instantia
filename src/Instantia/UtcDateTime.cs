@@ -16,6 +16,10 @@ namespace Instantia
 
         public static readonly UtcDateTime MaxValue = new UtcDateTime(DateTime.MaxValue.Ticks);
 
+#if NETCOREAPP2_1 || NETSTANDARD2_1
+        public static readonly DateTime UnixEpoch = DateTime.UnixEpoch;
+#endif
+
         private readonly DateTime _dateTime;
 
         public UtcDateTime Date => IsDefault ? new UtcDateTime(0L) : new UtcDateTime(_dateTime.Date, false);
@@ -161,6 +165,11 @@ namespace Instantia
         public DateTime ToDateTime()
         {
             return IsDefault ? s_defaultDateTime : _dateTime;
+        }
+
+        public DateTimeOffset ToDateTimeOffset()
+        {
+            return new DateTimeOffset(ToDateTime());
         }
 
         public long ToFileTimeUtc()

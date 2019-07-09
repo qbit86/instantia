@@ -5,8 +5,7 @@ namespace Instantia
 {
     public readonly partial struct UtcDateTime
     {
-        public static UtcDateTime Today => UtcNow.Date;
-
+        [Obsolete("Please use GetCurrent() instead.")]
         public static UtcDateTime UtcNow => new UtcDateTime(DateTime.UtcNow, false);
 
         public static int Compare(UtcDateTime t1, UtcDateTime t2)
@@ -37,11 +36,23 @@ namespace Instantia
                 : new UtcDateTime(dateTime.ToUniversalTime(), false);
         }
 
+        public static UtcDateTime FromDateTimeOffset(DateTimeOffset dateTimeOffset)
+        {
+            return new UtcDateTime(dateTimeOffset.UtcDateTime, false);
+        }
+
         public static UtcDateTime FromFileTimeUtc(long fileTime)
         {
             DateTime dateTime = DateTime.FromFileTimeUtc(fileTime);
             return new UtcDateTime(dateTime, false);
         }
+
+#pragma warning disable CA1024 // Use properties where appropriate
+        public static UtcDateTime GetCurrent()
+        {
+            return new UtcDateTime(DateTime.UtcNow, false);
+        }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         public static UtcDateTime Parse(string s, IFormatProvider provider)
         {
