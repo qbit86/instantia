@@ -30,6 +30,9 @@ trim_trailing_whitespace = false
 
 [*.cs]
 
+# ReSharper properties
+resharper_empty_block_style = together_same_line
+
 #### .NET Coding Conventions ####
 
 # Organize usings
