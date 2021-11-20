@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 
+[assembly: CLSCompliant(true)]
+
 namespace Instantia
 {
     internal static class Program
