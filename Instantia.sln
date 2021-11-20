@@ -3,14 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{47D6ED3D-2CB1-4501-AB0E-DCD5EEBECD11}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		Directory.Build.props = Directory.Build.props
-		Instantia.sln.DotSettings = Instantia.sln.DotSettings
-		README.md = README.md
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{FA1B2670-3AF8-4328-89AC-C5E0DDC56680}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{26D253C9-BDEC-41EF-8691-5B50028F0299}"
@@ -18,6 +10,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instantia", "src\Instantia\Instantia.csproj", "{13A6FADB-E77A-4C7F-B14A-1466F636A946}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instantia.Demo", "samples\Instantia.Demo\Instantia.Demo.csproj", "{08384615-5784-489F-981B-72FD21DF7C74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{03BD603E-51B9-49FF-A7A2-2DABFCE2F677}"
+ProjectSection(SolutionItems) = preProject
+	.editorconfig = .editorconfig
+	Directory.Build.props = Directory.Build.props
+	Instantia.sln.DotSettings = Instantia.sln.DotSettings
+	README.md = README.md
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
