@@ -5,7 +5,8 @@
     <EnablePackageValidation>true</EnablePackageValidation>
     <TargetFrameworks>net461;netstandard1.1;netstandard2.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
     <AssemblyVersion>0.3</AssemblyVersion>
-    <VersionPrefix>0.3.0</VersionPrefix>
+    <VersionPrefix>0.3.1</VersionPrefix>
+    <VersionSuffix>preview</VersionSuffix>
     <FileVersion>$(VersionPrefix)</FileVersion>
     <Description>A thin wrapper around System.DateTime which guarantees Kind to be Utc.
 Commonly used types:
