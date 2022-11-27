@@ -16,7 +16,7 @@ public readonly partial struct UtcDateTime : IComparable, IFormattable, ICompara
 
     public static readonly UtcDateTime MaxValue = new(DateTime.MaxValue.Ticks);
 
-#if NETCOREAPP3_1 || NETSTANDARD2_1
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
     public static readonly UtcDateTime UnixEpoch = new(DateTime.UnixEpoch, false);
 #endif
 
@@ -149,7 +149,7 @@ public readonly partial struct UtcDateTime : IComparable, IFormattable, ICompara
     public string ToString(string format, IFormatProvider formatProvider) =>
         ToDateTime().ToString(format, formatProvider);
 
-#if NETCOREAPP3_1 || NETSTANDARD2_1
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
     public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format = default,
         IFormatProvider provider = null) =>
         ToDateTime().TryFormat(destination, out charsWritten, format, provider);

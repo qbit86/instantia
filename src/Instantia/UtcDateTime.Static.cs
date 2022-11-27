@@ -50,7 +50,7 @@ public readonly partial struct UtcDateTime
         return FromDateTime(dateTime);
     }
 
-#if NETCOREAPP3_1 || NETSTANDARD2_1
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
     public static UtcDateTime Parse(ReadOnlySpan<char> s, IFormatProvider provider = null,
         DateTimeStyles styles = DateTimeStyles.None)
     {
@@ -77,7 +77,7 @@ public readonly partial struct UtcDateTime
         return FromDateTime(dateTime);
     }
 
-#if NETCOREAPP3_1 || NETSTANDARD2_1
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
     public static UtcDateTime ParseExact(ReadOnlySpan<char> s, ReadOnlySpan<char> format,
         IFormatProvider provider, DateTimeStyles style = DateTimeStyles.None)
     {
@@ -100,7 +100,7 @@ public readonly partial struct UtcDateTime
         return success;
     }
 
-#if NETCOREAPP3_1 || NETSTANDARD2_1
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
     public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider provider, DateTimeStyles styles,
         out UtcDateTime result)
     {
