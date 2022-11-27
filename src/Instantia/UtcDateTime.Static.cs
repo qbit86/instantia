@@ -51,8 +51,13 @@ public readonly partial struct UtcDateTime
     }
 
 #if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
-    public static UtcDateTime Parse(ReadOnlySpan<char> s, IFormatProvider provider = null,
-        DateTimeStyles styles = DateTimeStyles.None)
+    public static UtcDateTime Parse(ReadOnlySpan<char> s, IFormatProvider provider = null)
+    {
+        var dateTime = DateTime.Parse(s, provider, DateTimeStyles.None);
+        return FromDateTime(dateTime);
+    }
+
+    public static UtcDateTime Parse(ReadOnlySpan<char> s, IFormatProvider provider, DateTimeStyles styles)
     {
         var dateTime = DateTime.Parse(s, provider, styles);
         return FromDateTime(dateTime);
@@ -93,6 +98,13 @@ public readonly partial struct UtcDateTime
     }
 #endif
 
+    public static bool TryParse(string s, IFormatProvider provider, out UtcDateTime result)
+    {
+        bool success = DateTime.TryParse(s, provider, DateTimeStyles.None, out DateTime dateTime);
+        result = FromDateTime(dateTime);
+        return success;
+    }
+
     public static bool TryParse(string s, IFormatProvider provider, DateTimeStyles styles, out UtcDateTime result)
     {
         bool success = DateTime.TryParse(s, provider, styles, out DateTime dateTime);
@@ -101,6 +113,13 @@ public readonly partial struct UtcDateTime
     }
 
 #if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+    public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider provider, out UtcDateTime result)
+    {
+        bool success = DateTime.TryParse(s, provider, DateTimeStyles.None, out DateTime dateTime);
+        result = FromDateTime(dateTime);
+        return success;
+    }
+
     public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider provider, DateTimeStyles styles,
         out UtcDateTime result)
     {
