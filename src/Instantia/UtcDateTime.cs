@@ -16,8 +16,8 @@ namespace Instantia
 
         public static readonly UtcDateTime MaxValue = new(DateTime.MaxValue.Ticks);
 
-#if NETCOREAPP2_1 || NETSTANDARD2_1
-        public static readonly UtcDateTime UnixEpoch = new UtcDateTime(DateTime.UnixEpoch, false);
+#if NETCOREAPP3_1 || NETSTANDARD2_1
+        public static readonly UtcDateTime UnixEpoch = new(DateTime.UnixEpoch, false);
 #endif
 
         private readonly DateTime _dateTime;
@@ -149,12 +149,10 @@ namespace Instantia
         public string ToString(string format, IFormatProvider formatProvider) =>
             ToDateTime().ToString(format, formatProvider);
 
-#if NETCOREAPP2_1 || NETSTANDARD2_1
+#if NETCOREAPP3_1 || NETSTANDARD2_1
         public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format = default,
-            IFormatProvider provider = null)
-        {
-            return ToDateTime().TryFormat(destination, out charsWritten, format, provider);
-        }
+            IFormatProvider provider = null) =>
+            ToDateTime().TryFormat(destination, out charsWritten, format, provider);
 #endif
     }
 }

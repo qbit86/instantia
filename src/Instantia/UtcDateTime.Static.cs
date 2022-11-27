@@ -50,11 +50,11 @@ namespace Instantia
             return FromDateTime(dateTime);
         }
 
-#if NETCOREAPP2_1 || NETSTANDARD2_1
+#if NETCOREAPP3_1 || NETSTANDARD2_1
         public static UtcDateTime Parse(ReadOnlySpan<char> s, IFormatProvider provider = null,
             DateTimeStyles styles = DateTimeStyles.None)
         {
-            DateTime dateTime = DateTime.Parse(s, provider, styles);
+            var dateTime = DateTime.Parse(s, provider, styles);
             return FromDateTime(dateTime);
         }
 #endif
@@ -77,18 +77,18 @@ namespace Instantia
             return FromDateTime(dateTime);
         }
 
-#if NETCOREAPP2_1 || NETSTANDARD2_1
+#if NETCOREAPP3_1 || NETSTANDARD2_1
         public static UtcDateTime ParseExact(ReadOnlySpan<char> s, ReadOnlySpan<char> format,
             IFormatProvider provider, DateTimeStyles style = DateTimeStyles.None)
         {
-            DateTime dateTime = DateTime.ParseExact(s, format, provider, style);
+            var dateTime = DateTime.ParseExact(s, format, provider, style);
             return FromDateTime(dateTime);
         }
 
         public static UtcDateTime ParseExact(ReadOnlySpan<char> s, string[] formats, IFormatProvider provider,
             DateTimeStyles style = DateTimeStyles.None)
         {
-            DateTime dateTime = DateTime.ParseExact(s, formats, provider, style);
+            var dateTime = DateTime.ParseExact(s, formats, provider, style);
             return FromDateTime(dateTime);
         }
 #endif
@@ -100,7 +100,7 @@ namespace Instantia
             return success;
         }
 
-#if NETCOREAPP2_1 || NETSTANDARD2_1
+#if NETCOREAPP3_1 || NETSTANDARD2_1
         public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider provider, DateTimeStyles styles,
             out UtcDateTime result)
         {
