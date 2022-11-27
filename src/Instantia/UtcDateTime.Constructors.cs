@@ -15,16 +15,16 @@ namespace Instantia
             _dateTime = dateTime;
         }
 
-        public UtcDateTime(long ticks) : this(new DateTime(ticks, DateTimeKind.Utc), false) { }
+        public UtcDateTime(long ticks) : this(new(ticks, DateTimeKind.Utc), false) { }
 
         public UtcDateTime(int year, int month, int day) :
-            this(new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc), false) { }
+            this(new(year, month, day, 0, 0, 0, DateTimeKind.Utc), false) { }
 
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second) :
-            this(new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc), false) { }
+            this(new(year, month, day, hour, minute, second, DateTimeKind.Utc), false) { }
 
         public UtcDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond) :
-            this(new DateTime(year, month, day, hour, minute, second, millisecond, DateTimeKind.Utc), false) { }
+            this(new(year, month, day, hour, minute, second, millisecond, DateTimeKind.Utc), false) { }
 
 #pragma warning disable CA1801 // Review unused parameters
         // ReSharper disable once UnusedParameter.Local

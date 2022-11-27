@@ -4,6 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Instantia\Instantia.csproj"/>
+    <ProjectReference Include="..\..\src\Instantia\Instantia.csproj" />
   </ItemGroup>
 </Project>

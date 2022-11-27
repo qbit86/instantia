@@ -19,7 +19,7 @@ namespace Instantia
             // UtcDateTime utcNow = new UtcDateTime(localNow);
 
             // Valid explicit type conversion from 'System.DateTime' to 'Instantia.UtcDateTime'.
-            UtcDateTime utcNow = UtcDateTime.FromDateTime(localNow);
+            var utcNow = UtcDateTime.FromDateTime(localNow);
             TakeUtcDateTime(utcNow);
 
             // There is implicit conversion from 'Instantia.UtcDateTime' to 'System.DateTime'.
@@ -31,14 +31,12 @@ namespace Instantia
             Console.WriteLine(
                 $"[{nameof(TakeUtcDateTime)}] {nameof(instant)}: {instant}, {nameof(instant.Kind)}: {instant.Kind}");
 
-            DateTime underlyingDateTime = instant.ToDateTime();
+            var underlyingDateTime = instant.ToDateTime();
             Debug.Assert(underlyingDateTime.Kind == DateTimeKind.Utc);
         }
 
-        private static void TakePlainDateTime(DateTime instant)
-        {
+        private static void TakePlainDateTime(DateTime instant) =>
             Console.WriteLine(
                 $"[{nameof(TakePlainDateTime)}] {nameof(instant)}: {instant}, {nameof(instant.Kind)}: {instant.Kind}");
-        }
     }
 }

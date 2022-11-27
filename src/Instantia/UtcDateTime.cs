@@ -10,11 +10,11 @@ namespace Instantia
     {
         private const string ArgMustBeDateTime = "Object must be of type DateTime.";
         private const string ArgumentInvalidDateTimeKind = "Invalid DateTimeKind value.";
-        private static readonly DateTime s_defaultDateTime = new DateTime(0L, DateTimeKind.Utc);
+        private static readonly DateTime s_defaultDateTime = new(0L, DateTimeKind.Utc);
 
-        public static readonly UtcDateTime MinValue = new UtcDateTime(DateTime.MinValue.Ticks);
+        public static readonly UtcDateTime MinValue = new(DateTime.MinValue.Ticks);
 
-        public static readonly UtcDateTime MaxValue = new UtcDateTime(DateTime.MaxValue.Ticks);
+        public static readonly UtcDateTime MaxValue = new(DateTime.MaxValue.Ticks);
 
 #if NETCOREAPP2_1 || NETSTANDARD2_1
         public static readonly UtcDateTime UnixEpoch = new UtcDateTime(DateTime.UnixEpoch, false);
@@ -22,7 +22,7 @@ namespace Instantia
 
         private readonly DateTime _dateTime;
 
-        public UtcDateTime Date => IsDefault ? new UtcDateTime(0L) : new UtcDateTime(_dateTime.Date, false);
+        public UtcDateTime Date => IsDefault ? new(0L) : new UtcDateTime(_dateTime.Date, false);
 
         public int Day => _dateTime.Day;
 
@@ -55,60 +55,54 @@ namespace Instantia
         public UtcDateTime Add(TimeSpan value)
         {
             DateTime dateTime = ToDateTime().Add(value);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
         public UtcDateTime AddDays(double value)
         {
             DateTime dateTime = ToDateTime().AddDays(value);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
         public UtcDateTime AddHours(double value)
         {
             DateTime dateTime = ToDateTime().AddHours(value);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
         public UtcDateTime AddMilliseconds(double value)
         {
             DateTime dateTime = ToDateTime().AddMilliseconds(value);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
         public UtcDateTime AddMinutes(double value)
         {
             DateTime dateTime = ToDateTime().AddMinutes(value);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
         public UtcDateTime AddMonths(int months)
         {
             DateTime dateTime = ToDateTime().AddMonths(months);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
         public UtcDateTime AddSeconds(double value)
         {
             DateTime dateTime = ToDateTime().AddSeconds(value);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
-        public UtcDateTime AddTicks(long value)
-        {
-            return new UtcDateTime(_dateTime.Ticks + value);
-        }
+        public UtcDateTime AddTicks(long value) => new(_dateTime.Ticks + value);
 
         public UtcDateTime AddYears(int value)
         {
             DateTime dateTime = ToDateTime().AddYears(value);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
-        public int CompareTo(UtcDateTime other)
-        {
-            return Compare(this, other);
-        }
+        public int CompareTo(UtcDateTime other) => Compare(this, other);
 
         public int CompareTo(object obj)
         {
@@ -121,76 +115,39 @@ namespace Instantia
             throw new ArgumentException(ArgMustBeDateTime, nameof(obj));
         }
 
-        public bool Equals(UtcDateTime other)
-        {
-            return Ticks == other.Ticks;
-        }
+        public bool Equals(UtcDateTime other) => Ticks == other.Ticks;
 
-        public override bool Equals(object obj)
-        {
-            return obj is UtcDateTime other && Equals(other);
-        }
+        public override bool Equals(object obj) => obj is UtcDateTime other && Equals(other);
 
-        public string[] GetDateTimeFormats(IFormatProvider provider)
-        {
-            return ToDateTime().GetDateTimeFormats(provider);
-        }
+        public string[] GetDateTimeFormats(IFormatProvider provider) => ToDateTime().GetDateTimeFormats(provider);
 
-        public string[] GetDateTimeFormats(char format, IFormatProvider provider)
-        {
-            return ToDateTime().GetDateTimeFormats(format, provider);
-        }
+        public string[] GetDateTimeFormats(char format, IFormatProvider provider) =>
+            ToDateTime().GetDateTimeFormats(format, provider);
 
-        public override int GetHashCode()
-        {
-            return Ticks.GetHashCode();
-        }
+        public override int GetHashCode() => Ticks.GetHashCode();
 
-        public TimeSpan Subtract(UtcDateTime value)
-        {
-            return new TimeSpan(Ticks - value.Ticks);
-        }
+        public TimeSpan Subtract(UtcDateTime value) => new(Ticks - value.Ticks);
 
         public UtcDateTime Subtract(TimeSpan value)
         {
             DateTime dateTime = ToDateTime().Subtract(value);
-            return new UtcDateTime(dateTime, false);
+            return new(dateTime, false);
         }
 
-        public long ToBinary()
-        {
-            return ToDateTime().ToBinary();
-        }
+        public long ToBinary() => ToDateTime().ToBinary();
 
-        public DateTime ToDateTime()
-        {
-            return IsDefault ? s_defaultDateTime : _dateTime;
-        }
+        public DateTime ToDateTime() => IsDefault ? s_defaultDateTime : _dateTime;
 
-        public DateTimeOffset ToDateTimeOffset()
-        {
-            return new DateTimeOffset(ToDateTime());
-        }
+        public DateTimeOffset ToDateTimeOffset() => new(ToDateTime());
 
-        public long ToFileTimeUtc()
-        {
-            return ToDateTime().ToFileTimeUtc();
-        }
+        public long ToFileTimeUtc() => ToDateTime().ToFileTimeUtc();
 
-        public override string ToString()
-        {
-            return ToDateTime().ToString("u", CultureInfo.InvariantCulture);
-        }
+        public override string ToString() => ToDateTime().ToString("u", CultureInfo.InvariantCulture);
 
-        public string ToString(IFormatProvider provider)
-        {
-            return ToDateTime().ToString(provider);
-        }
+        public string ToString(IFormatProvider provider) => ToDateTime().ToString(provider);
 
-        public string ToString(string format, IFormatProvider formatProvider)
-        {
-            return ToDateTime().ToString(format, formatProvider);
-        }
+        public string ToString(string format, IFormatProvider formatProvider) =>
+            ToDateTime().ToString(format, formatProvider);
 
 #if NETCOREAPP2_1 || NETSTANDARD2_1
         public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format = default,

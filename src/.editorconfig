@@ -1,0 +1,5 @@
+[*.csproj]
+ij_formatter_enabled = false
+
+[CHANGELOG.md]
+ij_formatter_enabled = false

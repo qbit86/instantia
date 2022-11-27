@@ -6,63 +6,47 @@ namespace Instantia
     public readonly partial struct UtcDateTime
     {
         [Obsolete("Please use GetCurrent() instead.")]
-        public static UtcDateTime UtcNow => new UtcDateTime(DateTime.UtcNow, false);
+        public static UtcDateTime UtcNow => new(DateTime.UtcNow, false);
 
-        public static int Compare(UtcDateTime t1, UtcDateTime t2)
-        {
-            return t1.Ticks.CompareTo(t2.Ticks);
-        }
+        public static int Compare(UtcDateTime t1, UtcDateTime t2) => t1.Ticks.CompareTo(t2.Ticks);
 
-        public static bool Equals(UtcDateTime t1, UtcDateTime t2)
-        {
-            return t1.Ticks == t2.Ticks;
-        }
+        public static bool Equals(UtcDateTime t1, UtcDateTime t2) => t1.Ticks == t2.Ticks;
 
-        public static int DaysInMonth(int year, int month)
-        {
-            return DateTime.DaysInMonth(year, month);
-        }
+        public static int DaysInMonth(int year, int month) => DateTime.DaysInMonth(year, month);
 
         public static UtcDateTime FromBinary(long dateData)
         {
-            DateTime dateTime = DateTime.FromBinary(dateData);
+            var dateTime = DateTime.FromBinary(dateData);
             return FromDateTime(dateTime);
         }
 
-        public static UtcDateTime FromDateTime(DateTime dateTime)
-        {
-            return dateTime.Kind == DateTimeKind.Utc
-                ? new UtcDateTime(dateTime, false)
+        public static UtcDateTime FromDateTime(DateTime dateTime) =>
+            dateTime.Kind == DateTimeKind.Utc
+                ? new(dateTime, false)
                 : new UtcDateTime(dateTime.ToUniversalTime(), false);
-        }
 
-        public static UtcDateTime FromDateTimeOffset(DateTimeOffset dateTimeOffset)
-        {
-            return new UtcDateTime(dateTimeOffset.UtcDateTime, false);
-        }
+        public static UtcDateTime FromDateTimeOffset(DateTimeOffset dateTimeOffset) =>
+            new(dateTimeOffset.UtcDateTime, false);
 
         public static UtcDateTime FromFileTimeUtc(long fileTime)
         {
-            DateTime dateTime = DateTime.FromFileTimeUtc(fileTime);
-            return new UtcDateTime(dateTime, false);
+            var dateTime = DateTime.FromFileTimeUtc(fileTime);
+            return new(dateTime, false);
         }
 
 #pragma warning disable CA1024 // Use properties where appropriate
-        public static UtcDateTime GetCurrent()
-        {
-            return new UtcDateTime(DateTime.UtcNow, false);
-        }
+        public static UtcDateTime GetCurrent() => new(DateTime.UtcNow, false);
 #pragma warning restore CA1024 // Use properties where appropriate
 
         public static UtcDateTime Parse(string s, IFormatProvider provider)
         {
-            DateTime dateTime = DateTime.Parse(s, provider);
+            var dateTime = DateTime.Parse(s, provider);
             return FromDateTime(dateTime);
         }
 
         public static UtcDateTime Parse(string s, IFormatProvider provider, DateTimeStyles styles)
         {
-            DateTime dateTime = DateTime.Parse(s, provider, styles);
+            var dateTime = DateTime.Parse(s, provider, styles);
             return FromDateTime(dateTime);
         }
 
@@ -77,19 +61,19 @@ namespace Instantia
 
         public static UtcDateTime ParseExact(string s, string format, IFormatProvider provider)
         {
-            DateTime dateTime = DateTime.ParseExact(s, format, provider);
+            var dateTime = DateTime.ParseExact(s, format, provider);
             return FromDateTime(dateTime);
         }
 
         public static UtcDateTime ParseExact(string s, string format, IFormatProvider provider, DateTimeStyles style)
         {
-            DateTime dateTime = DateTime.ParseExact(s, format, provider, style);
+            var dateTime = DateTime.ParseExact(s, format, provider, style);
             return FromDateTime(dateTime);
         }
 
         public static UtcDateTime ParseExact(string s, string[] formats, IFormatProvider provider, DateTimeStyles style)
         {
-            DateTime dateTime = DateTime.ParseExact(s, formats, provider, style);
+            var dateTime = DateTime.ParseExact(s, formats, provider, style);
             return FromDateTime(dateTime);
         }
 
